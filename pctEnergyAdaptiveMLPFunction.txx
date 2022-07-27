@@ -6,7 +6,6 @@ EnergyAdaptiveMLPFunction
 {
   // We operate a change of origin, u0 is always 0
   m_u0=0.;
-  m_ScalarTest = -1.;
   m_CanBeVectorised = true;
 }
 

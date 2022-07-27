@@ -79,7 +79,7 @@ ProtonPairsToDistanceDrivenProjection<TInputImage, TOutputImage>
     }
   if(m_MostLikelyPathTrackerUncertainties && m_MostLikelyPathType != "schulte")
   {
-    itkGenericExceptionMacro("Tracker uncertainties can currently only be considered with MLP type 'Schulte'.")
+    itkGenericExceptionMacro("Tracker uncertainties can currently only be considered with MLP type 'Schulte'.");
   }
 
   // Create thread image and corresponding stack to count events

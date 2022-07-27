@@ -182,8 +182,6 @@ private:
   itk::Vector<double, 9> m_dm_x;
   itk::Vector<double, 9> m_dm_y;
 
-  itk::Vector<double, 1> m_ScalarTest;
-
   // vectors holding the constants c0 and c1
   itk::Vector<double, 2> m_c_x;
   itk::Vector<double, 2> m_c_y;
