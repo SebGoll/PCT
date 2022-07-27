@@ -130,8 +130,6 @@ private:
   EnergyAdaptiveMLPFunction( const Self& ); //purposely not implemented
   void operator=( const Self& ); //purposely not implemented
 
-  itk::Vector<double, 1> m_ScalarTest;
-
   // vectors holding the linear coefficients a and b of the inverse kinematic term
   itk::Vector<double, 2> m_ab;
 
