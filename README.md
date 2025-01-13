@@ -27,7 +27,7 @@ export PATH=path/to/build/folder:${PATH}  # where PCT was built
 ```
 in the user's `.bashrc` file.
 
-Some functionalities of PCT require [GATE](http://www.opengatecollaboration.org/) to run. [Instructions on how to install GATE can be found in the GATE documentation.](https://opengate-python.readthedocs.io/en/master/user_guide/user_guide_installation.html) An example of proton CT GATE simulation can be found [here](../gate/protonct.py).
+Some functionalities of PCT require [GATE](http://www.opengatecollaboration.org/) to run. [Instructions on how to install GATE can be found in the GATE documentation.](https://opengate-python.readthedocs.io/en/master/user_guide/user_guide_installation.html) An example of proton CT GATE simulation can be found [here](gate/protonct.py).
 
 ## Usage
 
