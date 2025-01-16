@@ -318,7 +318,10 @@ ProtonPairsToDistanceDrivenProjection<TInputImage, TOutputImage>
 
     std::vector<double> zmmMLP;
     std::vector<unsigned int> kMLP;
-    double xxArr[imgSize[2]], yyArr[imgSize[2]];
+    std::vector<double>       xxArr;
+    xxArr.reserve(imgSize[2]);
+    std::vector<double>       yyArr;
+    yyArr.reserve(imgSize[2]);
     double dxDummy, dyDummy;
 
     double dInMLP[2];
