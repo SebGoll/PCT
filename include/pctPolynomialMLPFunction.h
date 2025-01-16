@@ -207,6 +207,5 @@ private:
 
 } // end namespace pct
 
-#include "pctPolynomialMLPFunction.txx"
 
 #endif

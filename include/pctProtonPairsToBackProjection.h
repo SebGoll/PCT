@@ -142,7 +142,7 @@ private:
 } // end namespace pct
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "pctProtonPairsToBackProjection.txx"
+#include "pctProtonPairsToBackProjection.hxx"
 #endif
 
 #endif

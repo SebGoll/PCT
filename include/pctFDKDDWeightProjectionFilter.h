@@ -67,7 +67,7 @@ private:
 } // end namespace pct
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "pctFDKDDWeightProjectionFilter.txx"
+#include "pctFDKDDWeightProjectionFilter.hxx"
 #endif
 
 #endif

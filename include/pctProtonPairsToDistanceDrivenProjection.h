@@ -180,7 +180,7 @@ private:
 } // end namespace pct
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "pctProtonPairsToDistanceDrivenProjection.txx"
+#include "pctProtonPairsToDistanceDrivenProjection.hxx"
 #endif
 
 #endif
