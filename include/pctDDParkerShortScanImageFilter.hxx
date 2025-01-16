@@ -80,10 +80,10 @@ DDParkerShortScanImageFilter<TInputImage, TOutputImage>
   itLastAngle = (itLastAngle==sortedAngles.begin())?--sortedAngles.end():--itLastAngle;
   double lastAngle = itLastAngle->first;
   if(lastAngle<firstAngle)
-    lastAngle += 2*M_PI;
+    lastAngle += 2 * itk::Math::pi;
   //Delta
-  double delta = 0.5 * (lastAngle - firstAngle - M_PI);
-  delta = delta - 2*M_PI*floor( delta / (2*M_PI) ); // between -2*PI and 2*PI
+  double delta = 0.5 * (lastAngle - firstAngle - itk::Math::pi);
+  delta = delta - 2 * itk::Math::pi * floor(delta / (2 * itk::Math::pi)); // between -2*PI and 2*PI
 
   double sox = m_Geometry->GetSourceOffsetsX()[itIn.GetIndex()[2]];
   double sid = m_Geometry->GetSourceToIsocenterDistances()[itIn.GetIndex()[2]];
@@ -109,7 +109,7 @@ DDParkerShortScanImageFilter<TInputImage, TOutputImage>
     double beta = rotationAngles[ itIn.GetIndex()[3] ];
     beta = beta - firstAngle;
     if (beta<0)
-      beta += 2*M_PI;
+      beta += 2 * itk::Math::pi;
 
     itWeights.GoToBegin();
     while(!itWeights.IsAtEnd() )
