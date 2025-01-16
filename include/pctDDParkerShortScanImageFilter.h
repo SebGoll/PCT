@@ -74,7 +74,7 @@ private:
 } // end namespace pct
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "pctDDParkerShortScanImageFilter.txx"
+#include "pctDDParkerShortScanImageFilter.hxx"
 #endif
 
 #endif

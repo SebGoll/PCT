@@ -55,7 +55,7 @@ private:
 } // end namespace pct
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "pctZengBackProjectionImageFilter.txx"
+#include "pctZengBackProjectionImageFilter.hxx"
 #endif
 
 #endif

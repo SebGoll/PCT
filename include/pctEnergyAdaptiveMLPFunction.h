@@ -162,6 +162,5 @@ private:
 
 } // end namespace pct
 
-#include "pctEnergyAdaptiveMLPFunction.txx"
 
 #endif
