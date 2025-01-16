@@ -13,3 +13,20 @@ else()
 endif()
 
 itk_module_examples()
+
+list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
+
+if(NOT PCT_INSTALL_RUNTIME_DIR)
+  set(PCT_INSTALL_RUNTIME_DIR bin)
+endif()
+if(NOT PCT_INSTALL_LIB_DIR)
+  set(PCT_INSTALL_LIB_DIR ${CMAKE_INSTALL_LIBDIR})
+endif()
+if(NOT PCT_INSTALL_ARCHIVE_DIR)
+  set(PCT_INSTALL_ARCHIVE_DIR ${CMAKE_INSTALL_LIBDIR})
+endif()
+
+option(PCT_BUILD_APPLICATIONS "Build PCT applications" ON)
+if(PCT_BUILD_APPLICATIONS)
+  add_subdirectory(applications)
+endif()
