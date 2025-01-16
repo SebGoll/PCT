@@ -1,106 +1,15 @@
-# This is the root ITK CMakeLists file.
-CMAKE_MINIMUM_REQUIRED (VERSION 2.8)
+cmake_minimum_required(VERSION 3.16.3)
+project(PCT)
 
-# This project is designed to be built outside the Insight source tree.
-PROJECT(ProtonCT)
+set(PCT_LIBRARIES PCT)
 
-#=========================================================
-# Help function to debug CMake
-MACRO (DD in)
-  MESSAGE(${in}=${${in}})
-ENDMACRO(DD)
+if(NOT ITK_SOURCE_DIR)
+  find_package(ITK REQUIRED)
+  list(APPEND CMAKE_MODULE_PATH ${ITK_CMAKE_DIR})
+  include(ITKModuleExternal)
+else()
+  set(ITK_DIR ${CMAKE_BINARY_DIR})
+  itk_module_impl()
+endif()
 
-#=========================================================
-# CMake packages
-SET(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake"
-    CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/Modules"
-    ${CMAKE_MODULE_PATH})
-
-FIND_PACKAGE(Gengetopt REQUIRED)
-
-find_package(ITK 5.0.0 REQUIRED COMPONENTS RTK)
-include(${ITK_USE_FILE})
-
-IF(NOT ITK_USE_FFTWD OR NOT ITK_USE_FFTWF)
-    MESSAGE(FATAL_ERROR "You must recompile ITK with ITK_USE_FFTWF and ITK_USE_FFTWD. Then, recompile RTK first and pct second.")
-ENDIF()
-
-#=========================================================
-# ROOT stuff
-OPTION(PCT_WITH_ROOT "Use ROOT" OFF)
-IF(PCT_WITH_ROOT AND NOT WIN32)
-  FIND_PACKAGE(ROOT REQUIRED)
-  INCLUDE_DIRECTORIES(${ROOT_INCLUDE_DIR})
-  SET(LINK_DIRECTORIES ${ROOT_LIBRARY_DIR})
-ELSE()
-  INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
-ENDIF()
-
-#=========================================================
-# Geant4 stuff
-OPTION(PCT_WITH_GEANT4 "Use Geant4" OFF)
-IF(PCT_WITH_GEANT4)
-  FIND_PACKAGE(Geant4 REQUIRED)
-  INCLUDE(${Geant4_USE_FILE})
-  ADD_SUBDIRECTORY(geant4)
-  ADD_DEFINITIONS(-DPCT_GEANT4)
-  INCLUDE_DIRECTORIES(geant4)
-  STRING(REGEX REPLACE "-ansi"     "" CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS})
-  STRING(REGEX REPLACE "-pedantic" "" CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS})
-ELSE()
-  INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
-ENDIF()
-
-#=========================================================
-# We remove the warning option "shadow", because there are tons of
-# such warning related to clhep/g4 system of units.
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-shadow")
-
-#=========================================================
-# Propagate cmake options in a header file
-configure_file(pctConfiguration.h.in pctConfiguration.h)
-
-#=========================================================
-# Executables
-MACRO (ADD_PCT_EXECUTABLE EXE_NAME)
-  WRAP_GGO(${EXE_NAME}_GGO_C ${EXE_NAME}.ggo)
-  ADD_EXECUTABLE(${EXE_NAME} ${EXE_NAME}.cxx ${${EXE_NAME}_GGO_C} ${ARGN})
-  TARGET_LINK_LIBRARIES(${EXE_NAME} ${ITK_LIBRARIES})
-  IF(PCT_WITH_GEANT4)
-    TARGET_LINK_LIBRARIES(${EXE_NAME} pctGeant4)
-  ENDIF(PCT_WITH_GEANT4)
-ENDMACRO (ADD_PCT_EXECUTABLE)
-
-# Executables
-IF(PCT_WITH_ROOT AND NOT WIN32)
-  ADD_PCT_EXECUTABLE(pctpairprotonsLomaLinda pctpairprotonsLomaLinda.cxx)
-  TARGET_LINK_LIBRARIES(pctpairprotonsLomaLinda ${ROOT_LIBRARIES})
-  ADD_PCT_EXECUTABLE(pctpairprotonsLMU_IMPCT pctpairprotonsLMU_IMPCT.cxx)
-  TARGET_LINK_LIBRARIES(pctpairprotonsLMU_IMPCT ${ROOT_LIBRARIES})
-  ADD_PCT_EXECUTABLE(pctlluconverter pctlluconverter.cxx)
-  TARGET_LINK_LIBRARIES(pctlluconverter ${ROOT_LIBRARIES})
-  ADD_PCT_EXECUTABLE(pctpaircuts pctpaircuts.cxx)
-  TARGET_LINK_LIBRARIES(pctpaircuts ${ROOT_LIBRARIES} RooFit RooFitCore Minuit)
-ELSE()
-  ADD_PCT_EXECUTABLE(pctpaircuts pctpaircuts.cxx)
-ENDIF()
-ADD_PCT_EXECUTABLE(pctpairgeometry pctpairgeometry.cxx)
-ADD_PCT_EXECUTABLE(pctmostlikelypath pctmostlikelypath.cxx)
-ADD_PCT_EXECUTABLE(pctbinning pctbinning.cxx)
-ADD_PCT_EXECUTABLE(pctfillholl pctfillholl.cxx)
-ADD_PCT_EXECUTABLE(pctbackprojectionbinning pctbackprojectionbinning.cxx)
-ADD_PCT_EXECUTABLE(pctzengbackprojections pctzengbackprojections.cxx)
-ADD_PCT_EXECUTABLE(pctparkershortscanweighting pctparkershortscanweighting.cxx)
-ADD_PCT_EXECUTABLE(pctprojections pctprojections.cxx)
-ADD_PCT_EXECUTABLE(pctbackprojections pctbackprojections.cxx)
-ADD_PCT_EXECUTABLE(pctfdktwodweights pctfdktwodweights.cxx)
-ADD_PCT_EXECUTABLE(pctfdk pctfdk.cxx)
-ADD_PCT_EXECUTABLE(pctschulte pctschulte.cxx)
-ADD_PCT_EXECUTABLE(pctswapcoordinates pctswapcoordinates.cxx)
-ADD_PCT_EXECUTABLE(pctpairarithm pctpairarithm.cxx)
-IF(PCT_WITH_GEANT4)
-  ADD_PCT_EXECUTABLE(pctdiffxsection pctdiffxsection.cxx)
-ENDIF(PCT_WITH_GEANT4)
-
-CONFIGURE_FILE("pctpairprotons.py" "pctpairprotons.py" COPYONLY)
-CONFIGURE_FILE("pcttoftowepl.py" "pcttoftowepl.py" COPYONLY)
+itk_module_examples()
