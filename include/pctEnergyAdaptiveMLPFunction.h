@@ -16,7 +16,7 @@ namespace Functor
 namespace FlexibleMLP
 {
 
-void
+inline void
 GetLinearCoefficients( itk::Vector<double, 2>& ab, const double E_in, const double E_out, const double deltaU )
 {
   double inverseScatteringPower_in, inverseScatteringPower_out;
