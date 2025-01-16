@@ -1,3 +1,5 @@
+#include "pctPolynomialMLPFunction.h"
+
 namespace pct
 {
 

@@ -54,6 +54,6 @@ private:
 
 } // namespace pct
 
-#include "pctThirdOrderPolynomialMLPFunction.txx"
+#include "pctThirdOrderPolynomialMLPFunction.hxx"
 
 #endif

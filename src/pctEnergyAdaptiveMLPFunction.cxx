@@ -1,3 +1,5 @@
+#include "pctEnergyAdaptiveMLPFunction.h"
+
 namespace pct
 {
 
@@ -81,22 +83,26 @@ EnergyAdaptiveMLPFunction
   /* terms order 0, 1, 2 */
   std::fill(x.begin(), x.end(), m_dm_x[2]);
   std::transform(x.begin(), x.end(), u.begin(), x.begin(), std::multiplies<double>() );
-  std::transform(x.begin(), x.end(), x.begin(), bind2nd(std::plus<double>(), m_dm_x[1]));
+  std::transform(x.begin(), x.end(), x.begin(), std::bind(std::plus<double>(), std::placeholders::_1, m_dm_x[1]));
   std::transform(x.begin(), x.end(), u.begin(), x.begin(), std::multiplies<double>() );
-  std::transform(x.begin(), x.end(), x.begin(), bind2nd(std::plus<double>(), m_dm_x[0]));
+  std::transform(x.begin(), x.end(), x.begin(), std::bind(std::plus<double>(), std::placeholders::_1, m_dm_x[0]));
 
   std::fill(y.begin(), y.end(), m_dm_y[2]);
   std::transform(y.begin(), y.end(), u.begin(), y.begin(), std::multiplies<double>() );
-  std::transform(y.begin(), y.end(), y.begin(), bind2nd(std::plus<double>(), m_dm_y[1]));
+  std::transform(y.begin(), y.end(), y.begin(), std::bind(std::plus<double>(), std::placeholders::_1, m_dm_y[1]));
   std::transform(y.begin(), y.end(), u.begin(), y.begin(), std::multiplies<double>() );
-  std::transform(y.begin(), y.end(), y.begin(), bind2nd(std::plus<double>(), m_dm_y[0]));
+  std::transform(y.begin(), y.end(), y.begin(), std::bind(std::plus<double>(), std::placeholders::_1, m_dm_y[0]));
 
   /* logarithmic term */
-  std::transform(u.begin(), u.end(), u.begin(), bind2nd(std::plus<double>(), 1) ); // u => u+1
+  std::transform(u.begin(), u.end(), u.begin(), std::bind(std::plus<double>(), std::placeholders::_1, 1)); // u => u+1
   std::transform(u.begin(), u.end(), uLog.begin(), uLog.begin(), std::multiplies<double>() ); // uLog = (u+1)*log(u+1)
-  std::transform(uLog.begin(), uLog.end(), uLog.begin(), bind2nd(std::multiplies<double>(), m_dm_x[3]));
+  std::transform(
+    uLog.begin(), uLog.end(), uLog.begin(), std::bind(std::multiplies<double>(), std::placeholders::_1, m_dm_x[3]));
   std::transform(x.begin(), x.end(), uLog.begin(), x.begin(), std::plus<double>() );
-  std::transform(uLog.begin(), uLog.end(), uLog.begin(), bind2nd(std::multiplies<double>(), m_dm_y[3]/m_dm_x[3]));
+  std::transform(uLog.begin(),
+                 uLog.end(),
+                 uLog.begin(),
+                 std::bind(std::multiplies<double>(), std::placeholders::_1, m_dm_y[3] / m_dm_x[3]));
   std::transform(y.begin(), y.end(), uLog.begin(), y.begin(), std::plus<double>() );
 
 

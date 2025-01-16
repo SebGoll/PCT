@@ -229,6 +229,5 @@ private:
 
 } // end namespace pct
 
-#include "pctSchulteMLPFunction.txx"
 
 #endif

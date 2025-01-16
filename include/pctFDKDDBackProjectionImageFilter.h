@@ -61,7 +61,7 @@ private:
 } // end namespace pct
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "pctFDKDDBackProjectionImageFilter.txx"
+#include "pctFDKDDBackProjectionImageFilter.hxx"
 #endif
 
 #endif

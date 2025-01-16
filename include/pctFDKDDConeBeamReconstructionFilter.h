@@ -95,7 +95,7 @@ private:
 } // end namespace pct
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "pctFDKDDConeBeamReconstructionFilter.txx"
+#include "pctFDKDDConeBeamReconstructionFilter.hxx"
 #endif
 
 #endif
