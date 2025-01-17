@@ -10,7 +10,9 @@ add_subdirectory(pctbackprojectionbinning)
 add_subdirectory(pctbackprojections)
 add_subdirectory(pctfdktwodweights)
 add_subdirectory(pctfdk)
-
+add_subdirectory(pctschulte)
+add_subdirectory(pctswapcoordinates)
+add_subdirectory(pctpairarithm)
 
 if(BUILD_TESTING)
 endif()
