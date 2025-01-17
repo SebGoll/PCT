@@ -5,8 +5,9 @@ add_subdirectory(pctmostlikelypath)
 add_subdirectory(pctbinning)
 add_subdirectory(pctfillholl)
 add_subdirectory(pctbackprojectionbinning)
-
-
+add_subdirectory(pctzengbackprojections)
+add_subdirectory(pctparkershortscanweighting)
+add_subdirectory(pctprojections)
 add_subdirectory(pctbackprojections)
 add_subdirectory(pctfdktwodweights)
 add_subdirectory(pctfdk)
