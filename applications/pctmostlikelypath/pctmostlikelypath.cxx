@@ -119,7 +119,10 @@ int main(int argc, char * argv[])
 
   std::vector<double> zmmMLP;
   std::vector<unsigned int> kMLP;
-  double xxArr[args_info.dimension_arg], yyArr[args_info.dimension_arg];
+  std::vector<double>       xxArr;
+  xxArr.reserve(args_info.dimension_arg);
+  std::vector<double>       yyArr;
+  yyArr.reserve(args_info.dimension_arg);
 
   double dx, dy;
   // loop to populate MLP array
