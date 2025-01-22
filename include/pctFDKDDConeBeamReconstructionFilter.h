@@ -63,15 +63,20 @@ protected:
   FDKDDConeBeamReconstructionFilter();
   ~FDKDDConeBeamReconstructionFilter(){}
 
-  virtual void GenerateInputRequestedRegion() ITK_OVERRIDE;
+  virtual void
+  GenerateInputRequestedRegion() override;
 
-  void GenerateOutputInformation() ITK_OVERRIDE;
+  void
+  GenerateOutputInformation() override;
 
-  void GenerateData() ITK_OVERRIDE;
+  void
+  GenerateData() override;
 
   /** The two inputs should not be in the same space so there is nothing
    * to verify. */
-  virtual void VerifyInputInformation() const ITK_OVERRIDE {}
+  virtual void
+  VerifyInputInformation() const override
+  {}
 
   /** Pointers to each subfilter of this composite filter */
   typename ExtractFilterType::Pointer m_ExtractFilter;

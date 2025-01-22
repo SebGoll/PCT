@@ -168,7 +168,7 @@ private:
   void operator=( const Self& ); //purposely not implemented
 
   static constexpr std::uintmax_t
-  CalculateBinomialCoefficient(const std::uintmax_t n, const std::uintmax_t k) ITK_NOEXCEPT
+  CalculateBinomialCoefficient(const std::uintmax_t n, const std::uintmax_t k) noexcept
   {
     return (k > n) ? (ITK_X_ASSERT(!"Out of range!"), 0)
                    : (k == 0) ? 1 : itk::Math::UnsignedProduct(n, CalculateBinomialCoefficient(n - 1, k - 1)) / k;

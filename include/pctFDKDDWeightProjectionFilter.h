@@ -50,8 +50,10 @@ protected:
   FDKDDWeightProjectionFilter()  {}
   ~FDKDDWeightProjectionFilter() {}
 
-  virtual void BeforeThreadedGenerateData() ITK_OVERRIDE;
-  virtual void DynamicThreadedGenerateData(const OutputImageRegionType& outputRegionForThread) ITK_OVERRIDE;
+  virtual void
+  BeforeThreadedGenerateData() override;
+  virtual void
+  DynamicThreadedGenerateData(const OutputImageRegionType & outputRegionForThread) override;
 
 private:
   FDKDDWeightProjectionFilter(const Self&); //purposely not implemented
