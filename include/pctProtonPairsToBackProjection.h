@@ -97,13 +97,18 @@ protected:
   ProtonPairsToBackProjection();
   virtual ~ProtonPairsToBackProjection() {}
 
-  virtual void BeforeThreadedGenerateData() ITK_OVERRIDE;
-  virtual void GenerateData() ITK_OVERRIDE;
-  virtual void AfterThreadedGenerateData() ITK_OVERRIDE;
+  virtual void
+  BeforeThreadedGenerateData() override;
+  virtual void
+  GenerateData() override;
+  virtual void
+  AfterThreadedGenerateData() override;
 
   /** The two inputs should not be in the same space so there is nothing
    * to verify. */
-  virtual void VerifyInputInformation() const ITK_OVERRIDE {}
+  virtual void
+  VerifyInputInformation() const override
+  {}
 
 private:
   ProtonPairsToBackProjection(const Self&); //purposely not implemented

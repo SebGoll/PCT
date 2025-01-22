@@ -41,11 +41,14 @@ protected:
   ZengBackProjectionImageFilter();
   ~ZengBackProjectionImageFilter(){}
 
-  virtual void GenerateOutputInformation() ITK_OVERRIDE;
-  virtual void DynamicThreadedGenerateData(const OutputImageRegionType& outputRegionForThread) ITK_OVERRIDE;
+  virtual void
+  GenerateOutputInformation() override;
+  virtual void
+  DynamicThreadedGenerateData(const OutputImageRegionType & outputRegionForThread) override;
 
   using Superclass::MakeOutput;
-  virtual itk::DataObject::Pointer MakeOutput(itk::ProcessObject::DataObjectPointerArraySizeType idx) ITK_OVERRIDE;
+  virtual itk::DataObject::Pointer
+  MakeOutput(itk::ProcessObject::DataObjectPointerArraySizeType idx) override;
 
 private:
   ZengBackProjectionImageFilter(const Self&); //purposely not implemented

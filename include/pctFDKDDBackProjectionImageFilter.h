@@ -49,7 +49,8 @@ protected:
   virtual ~FDKDDBackProjectionImageFilter() {
   };
 
-  virtual void DynamicThreadedGenerateData( const OutputImageRegionType& outputRegionForThread ) ITK_OVERRIDE;
+  virtual void
+  DynamicThreadedGenerateData(const OutputImageRegionType & outputRegionForThread) override;
 
   ProjectionStackPointer m_ProjectionStack;
 
