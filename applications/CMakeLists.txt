@@ -1,5 +1,6 @@
 find_package(Gengetopt REQUIRED)
 
+add_subdirectory(pctpaircuts)
 add_subdirectory(pctpairgeometry)
 add_subdirectory(pctmostlikelypath)
 add_subdirectory(pctbinning)
