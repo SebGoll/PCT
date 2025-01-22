@@ -1,5 +1,4 @@
 set(PCT_SRCS
-  itkMinimalStandardRandomVariateGenerator.cxx
   pctEnergyAdaptiveMLPFunction.cxx
   pctPolynomialMLPFunction.cxx
   pctSchulteMLPFunction.cxx

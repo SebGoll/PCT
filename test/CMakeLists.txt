@@ -1,8 +1,6 @@
 itk_module_test()
 
 set(PCTTests
-  itkMinimalStandardRandomVariateGeneratorTest.cxx
-  itkMyFilterTest.cxx
   )
 
 CreateTestDriver(PCT "${PCT-Test_LIBRARIES}" "${PCTTests}")
