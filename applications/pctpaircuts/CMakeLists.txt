@@ -1,0 +1,13 @@
+WRAP_GGO(pctpaircuts_GGO_C pctpaircuts.ggo)
+add_executable(pctpaircuts pctpaircuts.cxx ${pctpaircuts_GGO_C})
+target_link_libraries(pctpaircuts PCT)
+
+# Installation code
+# if(NOT RTK_INSTALL_NO_EXECUTABLES)
+foreach(EXE_NAME pctpaircuts)
+    install(TARGETS ${EXE_NAME}
+        RUNTIME DESTINATION ${PCT_INSTALL_RUNTIME_DIR} COMPONENT Runtime
+        LIBRARY DESTINATION ${PCT_INSTALL_LIB_DIR} COMPONENT RuntimeLibraries
+        ARCHIVE DESTINATION ${PCT_INSTALL_ARCHIVE_DIR} COMPONENT Development)
+endforeach()
+# endif()
