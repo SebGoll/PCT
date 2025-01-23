@@ -1,8 +1,14 @@
 
 if (NOT TARGET gengetopt)
-    find_program(GENGETOPT gengetopt "${ITK_RUNTIME_LIBRARY_DIRS}")
+    find_program(GENGETOPT gengetopt
+      HINTS
+        ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
+        ${NO_WRAP_CMAKE_RUNTIME_OUTPUT_DIRECTORY}
+        ${ITK_PYTHON_PACKAGE_DIR})
     if ((GENGETOPT STREQUAL "GENGETOPT-NOTFOUND") OR (GENGETOPT STREQUAL ""))
-        message("GENGETOPT not found at ${ITK_RUNTIME_LIBRARY_DIRS}")
+        message(FATAL_ERROR "Could not find Gengetopt executable.
+           Make sure RTK is built with RTK_BUILD_APPLICATIONS turned on,
+           or disable PCT_BUILD_APPLICATIONS")
     else()
         add_executable(gengetopt IMPORTED)
         set_property(TARGET gengetopt PROPERTY IMPORTED_LOCATION ${GENGETOPT})
