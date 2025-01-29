@@ -19,47 +19,48 @@
 namespace pct
 {
 
-template<class TInputImage, class TOutputImage=TInputImage>
-class ITK_EXPORT DDParkerShortScanImageFilter :
-  public itk::InPlaceImageFilter<TInputImage, TOutputImage>
+template <class TInputImage, class TOutputImage = TInputImage>
+class ITK_EXPORT DDParkerShortScanImageFilter : public itk::InPlaceImageFilter<TInputImage, TOutputImage>
 {
 public:
   /** Standard class typedefs. */
-  typedef DDParkerShortScanImageFilter Self;
+  using Self = DDParkerShortScanImageFilter;
 
-  typedef itk::ImageToImageFilter<TInputImage, TOutputImage> Superclass;
+  using Superclass = itk::ImageToImageFilter<TInputImage, TOutputImage>;
 
-  typedef itk::SmartPointer<Self>       Pointer;
-  typedef itk::SmartPointer<const Self> ConstPointer;
+  using Pointer = itk::SmartPointer<Self>;
+  using ConstPointer = itk::SmartPointer<const Self>;
 
   /** Some convenient typedefs. */
-  typedef TInputImage                                     InputImageType;
-  typedef TOutputImage                                    OutputImageType;
-  typedef typename OutputImageType::RegionType            OutputImageRegionType;
-  typedef itk::Image<typename TOutputImage::PixelType, 1> WeightImageType;
+  using InputImageType = TInputImage;
+  using OutputImageType = TOutputImage;
+  using OutputImageRegionType = typename OutputImageType::RegionType;
+  using WeightImageType = itk::Image<typename TOutputImage::PixelType, 1>;
 
-  typedef rtk::ThreeDCircularProjectionGeometry GeometryType;
-  typedef GeometryType::Pointer                 GeometryPointer;
+  using GeometryType = rtk::ThreeDCircularProjectionGeometry;
+  using GeometryPointer = GeometryType::Pointer;
 
   /** Standard New method. */
   itkNewMacro(Self);
 
   /** Runtime information support. */
-  itkTypeMacro(DDParkerShortScanImageFilter, itk::ImageToImageFilter);
+  itkOverrideGetNameOfClassMacro(DDParkerShortScanImageFilter);
 
   /** Get / Set the object pointer to projection geometry */
   itkGetMacro(Geometry, GeometryPointer);
   itkSetMacro(Geometry, GeometryPointer);
 
 protected:
-  DDParkerShortScanImageFilter(){ this->SetInPlace(true); }
-  ~DDParkerShortScanImageFilter(){}
+  DDParkerShortScanImageFilter() { this->SetInPlace(true); }
+  ~DDParkerShortScanImageFilter() {}
 
-  virtual void DynamicThreadedGenerateData(const OutputImageRegionType& outputRegionForThread) override;
+  virtual void
+  DynamicThreadedGenerateData(const OutputImageRegionType & outputRegionForThread) override;
 
 private:
-  DDParkerShortScanImageFilter(const Self&); //purposely not implemented
-  void operator=(const Self&);             //purposely not implemented
+  DDParkerShortScanImageFilter(const Self &); // purposely not implemented
+  void
+  operator=(const Self &); // purposely not implemented
 
   /** RTK geometry object */
   GeometryPointer m_Geometry;
@@ -74,7 +75,7 @@ private:
 } // end namespace pct
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "pctDDParkerShortScanImageFilter.hxx"
+#  include "pctDDParkerShortScanImageFilter.hxx"
 #endif
 
 #endif
