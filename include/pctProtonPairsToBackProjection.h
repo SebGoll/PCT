@@ -13,55 +13,55 @@ namespace pct
 {
 
 template <class TInputImage, class TOutputImage>
-class ITK_EXPORT ProtonPairsToBackProjection :
-  public itk::InPlaceImageFilter<TInputImage,TOutputImage>
+class ITK_EXPORT ProtonPairsToBackProjection : public itk::InPlaceImageFilter<TInputImage, TOutputImage>
 {
 public:
   /** Standard class typedefs. */
-  typedef ProtonPairsToBackProjection                       Self;
-  typedef itk::InPlaceImageFilter<TInputImage,TOutputImage> Superclass;
-  typedef itk::SmartPointer<Self>                           Pointer;
-  typedef itk::SmartPointer<const Self>                     ConstPointer;
+  using Self = ProtonPairsToBackProjection;
+  using Superclass = itk::InPlaceImageFilter<TInputImage, TOutputImage>;
+  using Pointer = itk::SmartPointer<Self>;
+  using ConstPointer = itk::SmartPointer<const Self>;
 
-  typedef  std::vector<std::string> FileNamesContainer;
+  using FileNamesContainer = std::vector<std::string>;
 
-  typedef itk::Vector<float, 3>                        ProtonPairsPixelType;
-  typedef itk::Image<ProtonPairsPixelType,2>           ProtonPairsImageType;
-  typedef ProtonPairsImageType::Pointer                ProtonPairsImagePointer;
+  using ProtonPairsPixelType = itk::Vector<float, 3>;
+  using ProtonPairsImageType = itk::Image<ProtonPairsPixelType, 2>;
+  using ProtonPairsImagePointer = ProtonPairsImageType::Pointer;
 
-  typedef typename itk::Image< unsigned int,
-                               TInputImage::ImageDimension> CountImageType;
-  typedef typename CountImageType::Pointer                  CountImagePointer;
+  using CountImageType = typename itk::Image<unsigned int, TInputImage::ImageDimension>;
+  using CountImagePointer = typename CountImageType::Pointer;
 
-  typedef TOutputImage                                 OutputImageType;
-  typedef typename OutputImageType::Pointer            OutputImagePointer;
-  typedef typename OutputImageType::RegionType         OutputImageRegionType;
+  using OutputImageType = TOutputImage;
+  using OutputImagePointer = typename OutputImageType::Pointer;
+  using OutputImageRegionType = typename OutputImageType::RegionType;
 
-  typedef rtk::QuadricShape RQIType;
+  using RQIType = rtk::QuadricShape;
 
-  typedef rtk::ThreeDCircularProjectionGeometry     GeometryType;
-  typedef typename GeometryType::Pointer            GeometryPointer;
+  using GeometryType = rtk::ThreeDCircularProjectionGeometry;
+  using GeometryPointer = typename GeometryType::Pointer;
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
 
   /** Run-time type information (and related methods). */
-  itkTypeMacro(ProtonPairsToBackProjection, itk::InPlaceImageFilter);
+  itkOverrideGetNameOfClassMacro(ProtonPairsToBackProjection);
 
   /** Set the vector of strings that contains the file names. Files
    * are processed in sequential order. */
-  void SetProtonPairsFileNames (const FileNamesContainer &name)
+  void
+  SetProtonPairsFileNames(const FileNamesContainer & name)
+  {
+    if (m_ProtonPairsFileNames != name)
     {
-    if ( m_ProtonPairsFileNames != name)
-      {
       m_ProtonPairsFileNames = name;
       this->Modified();
-      }
     }
-  const FileNamesContainer & GetProtonPairsFileNames() const
-    {
+  }
+  const FileNamesContainer &
+  GetProtonPairsFileNames() const
+  {
     return m_ProtonPairsFileNames;
-    }
+  }
 
   /** Get/Set the most likely path type. Can be "schulte" or "polynomial" */
   itkGetMacro(MostLikelyPathType, std::string);
@@ -111,14 +111,15 @@ protected:
   {}
 
 private:
-  ProtonPairsToBackProjection(const Self&); //purposely not implemented
-  void operator=(const Self&);            //purposely not implemented
+  ProtonPairsToBackProjection(const Self &); // purposely not implemented
+  void
+  operator=(const Self &); // purposely not implemented
 
   /** A list of filenames to be processed. */
   FileNamesContainer m_ProtonPairsFileNames;
 
   std::string m_MostLikelyPathType;
-  int m_MostLikelyPathPolynomialDegree;
+  int         m_MostLikelyPathPolynomialDegree;
 
   /** Count event in each thread */
   CountImagePointer m_Counts;
@@ -131,7 +132,7 @@ private:
   double m_IonizationPotential;
 
   /** The functor to convert energy loss to attenuation */
-  Functor::IntegratedBetheBlochProtonStoppingPowerInverse<float, double> *m_ConvFunc;
+  Functor::IntegratedBetheBlochProtonStoppingPowerInverse<float, double> * m_ConvFunc;
 
   ProtonPairsImageType::Pointer m_ProtonPairs;
 
@@ -147,7 +148,7 @@ private:
 } // end namespace pct
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "pctProtonPairsToBackProjection.hxx"
+#  include "pctProtonPairsToBackProjection.hxx"
 #endif
 
 #endif
