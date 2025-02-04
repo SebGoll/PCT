@@ -6,6 +6,10 @@ set(PCTTests
 
 CreateTestDriver(PCT "${PCT-Test_LIBRARIES}" "${PCTTests}")
 
+if(ITK_WRAP_PYTHON)
+  itk_python_add_test(NAME pctPythonWrappingInstantiationTest COMMAND pctPythonWrappingInstantiationTest.py  ${CMAKE_CURRENT_BINARY_DIR}/pctPythonWrappingInstantiationTest.mha)
+endif()
+
 itk_add_test(NAME pctProtonPairsToDistanceDrivenProjectionTest
   COMMAND PCTTestDriver pctProtonPairsToDistanceDrivenProjectionTest
   )
