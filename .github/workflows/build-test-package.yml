@@ -13,10 +13,17 @@ jobs:
       itk-module-deps: RTK@master
 
   python-build-workflow:
-    uses: InsightSoftwareConsortium/ITKRemoteModuleBuildTestPackageAction/.github/workflows/build-test-package-python.yml@v5.4.0
+    uses: InsightSoftwareConsortium/ITKRemoteModuleBuildTestPackageAction/.github/workflows/build-test-package-python.yml@main
     with:
+      # Disable RTK_BUILD_APPLICATIONS to reduce compilation time
       cmake-options: '-DRTK_BUILD_APPLICATIONS:BOOL=OFF'
       python3-minor-versions: ${{ github.event_name == 'pull_request' && '["11"]' || '["9","10","11"]' }}
-      itk-module-deps: RTK@master
+      #itk-wheel-tag: "v6.0a01"
+      #itk-python-package-org: 'SimonRit'
+      #itk-python-package-tag: '45cfd02a22661731ca5b155f210cfa2f887d50e7'
+      itk-python-package-org: 'LucasGandel'
+      itk-python-package-tag: 'fix-macpython-module-deps'
+      #itk-python-package-tag: 'v6.0a01'
+      itk-module-deps: LucasGandel/RTK@PCT-CI
     secrets:
       pypi_password: ${{ secrets.pypi_password }}
