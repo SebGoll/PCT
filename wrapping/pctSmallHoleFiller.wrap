@@ -1,7 +1,0 @@
-itk_wrap_class("SmallHoleFiller")
-    foreach(t ${WRAP_ITK_REAL})
-        foreach(d 3 4)
-            itk_wrap_template("I${ITKM_${t}}${d}" "itk::Image<${ITKT_${t}}, ${d}>")
-        endforeach()
-    endforeach()
-itk_end_wrap_class()

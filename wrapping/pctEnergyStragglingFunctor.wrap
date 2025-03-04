@@ -1,7 +1,0 @@
-itk_wrap_class("pct::Functor::EnergyStragglingFunctor")
-    foreach(t_1 F D)
-        foreach(t_2 F D)
-            itk_wrap_template("${t_1}${t_2}" "${ITKT_${t_1}}, ${ITKT_${t_2}}")
-        endforeach()
-    endforeach()
-itk_end_wrap_class()

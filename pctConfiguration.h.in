@@ -1,7 +1,0 @@
-#ifndef __pctConfiguration_h
-#define __pctConfiguration_h
-// This file is interpreted by cmake, to define macros based on the cmake configuration options
-
-#cmakedefine01 PCT_WITH_ROOT
-
-#endif
