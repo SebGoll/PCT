@@ -9,7 +9,7 @@ description = "PCT (Proton Computed Tomography) is a toolkit used to process pro
 readme = "README.md"
 license = {file = "LICENSE"}
 authors = [
-    { name = "RTK Consortium", email = "simon.rit@creatis.insa-lyon.fr" },
+    { name = "Centre National de la Recherche Scientifique", email = "simon.rit@creatis.insa-lyon.fr" },
 ]
 keywords = [
     "itk",
