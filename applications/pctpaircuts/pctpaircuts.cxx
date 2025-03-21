@@ -4,7 +4,7 @@
 #include <rtkGgoFunctions.h>
 #include <rtkConstantImageSource.h>
 
-#include "pctConfiguration.h"
+// #include "pctConfiguration.h"
 #include "pctProtonPairsToDistanceDrivenProjection.h"
 #include "pctThirdOrderPolynomialMLPFunction.h"
 #include "pctSchulteMLPFunction.h"
