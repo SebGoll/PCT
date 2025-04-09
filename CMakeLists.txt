@@ -37,6 +37,7 @@ option(PCT_BUILD_SPHINX "Build Sphinx Documentation" OFF)
 if(PCT_BUILD_SPHINX)
   add_subdirectory(documentation/docs)
 endif()
+
 #---------------------------------------------------------
 # Git hooks
 if(EXISTS "${PCT_SOURCE_DIR}/.git/config" AND

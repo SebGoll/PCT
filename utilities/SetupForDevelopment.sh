@@ -73,6 +73,14 @@ elif git for-each-ref refs/remotes/origin/hooks 2>/dev/null |
 elif url=$(git config -f config --get hooks.url); then
 	# Fetch hooks from project-configured repository.
 	branch=$(git config -f config hooks.branch || echo hooks)
+elif git ls-remote 'https://github.com/RTKConsortium/PCT' 2>/dev/null |
+	egrep -q 'refs/heads/hooks$'; then
+	# Fallback on PCT's hooks branch
+	url='https://github.com/RTKConsortium/PCT' && branch='refs/heads/hooks'
+elif git ls-remote 'https://github.com/RTKConsortium/RTK' 2>/dev/null |
+	egrep -q 'refs/heads/hooks$'; then
+	# Fallback on RTK's hooks branch
+	url='https://github.com/RTKConsortium/RTK' && branch='refs/heads/hooks'
 else
 	die 'This project is not configured to install local hooks.'
 fi &&
